@@ -9,7 +9,8 @@ services:
       - CASSANDRA_NUM_TOKENS=256
     volumes:
       - ./cassandra/seed-datadir:/var/lib/cassandra
-
+    ports:
+      - "9042:9042"
   cassandra-follower-server:
     build: ./cassandra
     container_name: cassandra-follower
@@ -31,6 +32,8 @@ services:
     volumes:
       - ./mysql/dumps/:/docker-entrypoint-initdb.d/
       - ./mysql/mysql-datadir:/var/lib/mysql
+    ports:
+      - "3306:3306"
 
   identity-server:
     build:
@@ -75,11 +78,11 @@ services:
       depends_on:
         - hie-mysql
 
-  datasense:
-      build:
-        context: ../SHR-Datasense
-      container_name: datasense
-      ports:
-        - "8083:8083"
-      depends_on:
-        - hie-mysql
+#  datasense:
+#      build:
+#        context: ../SHR-Datasense
+#      container_name: datasense
+#      ports:
+#        - "8083:8083"
+#      depends_on:
+#        - hie-mysql
