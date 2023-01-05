@@ -37,7 +37,7 @@ services:
 
   identity-server:
     build:
-      context: ../identity-server/
+      context: ../Identity-Server/
     container_name: identity-server
     ports:
       - "8084:8084"
